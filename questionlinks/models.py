@@ -12,11 +12,10 @@ class Question(models.Model):
 	question_text = models.TextField(default='')
 	question_date = models.DateTimeField('date created', default=getnow())
 	sorting = models.IntegerField(default=0)
-	
+
 class Answer(models.Model):
 	question = models.ForeignKey(Question)
-	answer_link = models.URLField(default='', verify_exists=False, max_length=200)
+	answer_link = models.TextField(default='', max_length=200, null=True, blank=True)
 	answer_text = models.TextField(default='')
 	answer_date = models.DateTimeField('date created', default=getnow())
 	sorting = models.IntegerField(default=0)
-	

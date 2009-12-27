@@ -19,7 +19,7 @@ class QuestionCreationForm(forms.ModelForm):
 
 class AnswerCreationForm(forms.ModelForm):
 	answer_text = forms.CharField()
-	answer_link = forms.CharField()
+	answer_link = forms.CharField(required=False)
 	class Meta:
 		model = Answer
 		fields = ('answer_link',"answer_text",)

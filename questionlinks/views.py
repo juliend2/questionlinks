@@ -87,6 +87,8 @@ def add_answer(request, question_id):
 			new_answer.question_id = question.id
 			new_answer.save()
 			return HttpResponseRedirect('/questions/')
+		else:
+			return HttpResponseRedirect('/questions/')
 
 @login_required()
 def delete_answer(request, id):
