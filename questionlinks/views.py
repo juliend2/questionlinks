@@ -4,10 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required 
 from django.http import HttpResponseRedirect , HttpResponse
 from django.shortcuts import render_to_response
-from questionlink_django.questionlinks.forms import QuestionCreationForm
-from questionlink_django.questionlinks.models import Question
+from questionlink_django.questionlinks.forms import QuestionCreationForm, AnswerCreationForm
+from questionlink_django.questionlinks.models import Question, Answer
 
 
+# AUTH RELATED ACTIONS :
 def login(request): 
 	if request.method == 'POST': 
 		username = request.POST.get('username', '') 
@@ -38,12 +39,19 @@ def register(request):
 	return render_to_response("register.html", { 
 		'form': form, 
 	}) 
+	
+def logout(request): 
+	auth.logout(request) 
+	# Redirect to a success page. 
+	return HttpResponseRedirect("/login/")
+
+	
+# APP related actions :
 
 @login_required()
 def questions(request):
 	if request.method == 'POST': 
 		form = QuestionCreationForm(request.POST) 
-		form.user_id = 1
 		if form.is_valid():
 			new_question = form.save(commit=False) # Create, but don't save the new author instance.
 			new_question.user_id = request.user.id # put the correct user id HERE
@@ -51,17 +59,28 @@ def questions(request):
 			return HttpResponseRedirect("/questions/") 
 	else: 
 		form = QuestionCreationForm() 
+		answerform = AnswerCreationForm() 
 		questions = Question.objects.filter(user=request.user.id)
 		return render_to_response("questions.html", { 
 			'form': form, 
 			'questions':questions,
+			'answerform':answerform,
 		})
 
-def logout(request): 
-	auth.logout(request) 
-	# Redirect to a success page. 
-	return HttpResponseRedirect("/login/")
-	
+@login_required()
 def delete_question(request, id):
 	Question.objects.filter(id=id, user=request.user.id).delete()
 	return HttpResponseRedirect("/questions/")
+
+@login_required()
+def add_answer(request, question_id):
+	if request.method == 'POST':
+		answer = AnswerCreationForm(request.POST)
+		if answer.is_valid():
+			new_answer = answer.save(commit=False)
+			question = Question.objects.filter(id=question_id, user=request.user.id)[0]
+			new_answer.question_id = question.id
+			new_answer.save()
+			return HttpResponseRedirect('/questions/')
+
+

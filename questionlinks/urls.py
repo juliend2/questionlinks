@@ -9,6 +9,7 @@ urlpatterns = patterns('questionlink_django.questionlinks.views',
 	(r'^login/$', 'login'),
 	(r'^logout/$', 'logout'),	
 	(r'^delete_question/(?P<id>\d+)/$', 'delete_question'),
+	(r'^add_answer/(?P<question_id>\d+)/$', 'add_answer'),
 )
 
 if settings.DEBUG:

@@ -1,5 +1,5 @@
 from django import forms 
-from questionlink_django.questionlinks.models import Question
+from questionlink_django.questionlinks.models import Question,Answer
 
 class QuestionCreationForm(forms.ModelForm):
 	question_text = forms.CharField()
@@ -15,4 +15,11 @@ class QuestionCreationForm(forms.ModelForm):
 		if commit:
 			question.save()
 		return question
-  
+
+
+class AnswerCreationForm(forms.ModelForm):
+	answer_text = forms.CharField()
+	answer_link = forms.CharField()
+	class Meta:
+		model = Answer
+		fields = ("answer_text",'answer_link',)

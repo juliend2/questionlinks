@@ -24,9 +24,29 @@
 	{% for question in questions %}
 		<li class="question">
 			<a href="/delete_question/{{ question.id }}" class="btn">Delete Question</a> |
-			<a href="/add_answer/{{ question.id }}" class="newanswer btn">New Answer</a> |
+			<a href="/add_answer/{{ question.id }}" class="newanswer btn">New Answer</a>
+			{% if question.answer_set.all %} |
 			<a href="#" class="showanswer btn">Show Answers</a>&nbsp;
-			{{ question.question_text }}
+			
+			
+				<ul class="answers">
+					{% for answer in question.answer_set.all %}
+						<li class="answer">
+							<a href="/delete_answer/{{answer.id}}/" class="btn">Delete Answer</a>&nbsp;
+							{% if answer.answer_link %}
+								<a href="{{ answer.answer_link}}" class="answer_link" target="_blank">{{answer.answer_link}}</a>
+							{% endif %}
+							<div class="answer_text">
+								{{ answer.answer_text }}
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+			<form action="/add_answer/{{ question.id }}/" method="post" accept-charset="utf-8">
+				{{ answerform.as_table }}
+				<input type="submit" value="Add"/>
+			</form>
 		</li>
 	{% endfor %}
 	</ul>
