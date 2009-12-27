@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 
 
-urlpatterns = patterns('questionlink_django.questionlinks.views',
+urlpatterns = patterns('questionlinks_django.questionlinks.views',
 	(r'^$', 'index'),
 	(r'^questions/$', 'questions'),
 	(r'^register/$', 'register'),

@@ -1,4 +1,4 @@
-# Django settings for questionlink_django project.
+# Django settings for questionlinks_django project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -63,13 +63,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'questionlink_django.questionlinks.urls'
+ROOT_URLCONF = 'questionlinks_django.questionlinks.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/juliend2/public_html/questionlink_django/templates'
+    '/home/juliend2/public_html/questionlinks_django/templates'
 )
 
 INSTALLED_APPS = (
@@ -77,7 +77,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'questionlink_django.questionlinks',
+    'questionlinks_django.questionlinks',
 )
 
 LOGIN_URL = '/login/'

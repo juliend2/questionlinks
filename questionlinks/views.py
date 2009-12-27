@@ -4,8 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required 
 from django.http import HttpResponseRedirect , HttpResponse
 from django.shortcuts import render_to_response
-from questionlink_django.questionlinks.forms import QuestionCreationForm, AnswerCreationForm
-from questionlink_django.questionlinks.models import Question, Answer
+from questionlinks_django.questionlinks.forms import QuestionCreationForm, AnswerCreationForm
+from questionlinks_django.questionlinks.models import Question, Answer
 
 def index(request):
 	if request.user.id:

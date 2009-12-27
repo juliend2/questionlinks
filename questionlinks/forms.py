@@ -1,5 +1,5 @@
 from django import forms 
-from questionlink_django.questionlinks.models import Question,Answer
+from questionlinks_django.questionlinks.models import Question,Answer
 
 class QuestionCreationForm(forms.ModelForm):
 	question_text = forms.CharField()

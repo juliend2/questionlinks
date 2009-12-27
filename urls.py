@@ -6,7 +6,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
     # Example:
-    # (r'^questionlink_django/', include('questionlink_django.foo.urls')),
+    # (r'^questionlinks_django/', include('questionlinks_django.foo.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
@@ -14,5 +14,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # (r'^admin/', include(admin.site.urls)),
-		(r'^hello$', 'questionlink_django.questionlinks.views.hello'),
+		(r'^hello$', 'questionlinks_django.questionlinks.views.hello'),
 )
