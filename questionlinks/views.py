@@ -62,6 +62,8 @@ def questions(request):
 			new_question.user_id = request.user.id # put the correct user id HERE
 			new_question.save()
 			return HttpResponseRedirect("/questions/") 
+		else:
+			return HttpResponseRedirect("/questions/") 
 	else: 
 		form = QuestionCreationForm() 
 		answerform = AnswerCreationForm() 
