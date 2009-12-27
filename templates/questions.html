@@ -14,7 +14,7 @@
 {% endblock script %}
 
 {% block content %} 
-  <h1>Create a Question</h1> 
+  <h1>Create a Question</h1> <a href="/logout/">Logout</a>
   <form action="" method="post" id="addquestion"> 
       {{ form.as_p }} 
       <input type="submit" value="Create the question"> 
@@ -26,9 +26,9 @@
 			<a href="/delete_question/{{ question.id }}" class="btn">Delete Question</a> |
 			<a href="/add_answer/{{ question.id }}" class="newanswer btn">New Answer</a>
 			{% if question.answer_set.all %} |
-			<a href="#" class="showanswer btn">Show Answers</a>&nbsp;
-			
-			
+			<a href="#" class="showanswer btn">Show Answers</a>&nbsp; {% endif %}
+			{{ question.question_text }}
+			{% if question.answer_set.all %}
 				<ul class="answers">
 					{% for answer in question.answer_set.all %}
 						<li class="answer">

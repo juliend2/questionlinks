@@ -7,6 +7,11 @@ from django.shortcuts import render_to_response
 from questionlink_django.questionlinks.forms import QuestionCreationForm, AnswerCreationForm
 from questionlink_django.questionlinks.models import Question, Answer
 
+def index(request):
+	if request.user.id:
+		return HttpResponseRedirect("/questions/") 
+	else:
+		return HttpResponseRedirect("/login/") 
 
 # AUTH RELATED ACTIONS :
 def login(request): 
@@ -83,4 +88,7 @@ def add_answer(request, question_id):
 			new_answer.save()
 			return HttpResponseRedirect('/questions/')
 
-
+@login_required()
+def delete_answer(request, id):
+	Answer.objects.filter(id=id, question__user=request.user.id).delete()
+	return HttpResponseRedirect("/questions/")

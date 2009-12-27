@@ -13,6 +13,7 @@ h1 {
 	padding: 10px 0 10px 0 ;
 }
 form input[type="text"],
+form input[type='password'],
 form textarea {
 	font-size: 17px;
 	width: 400px;

@@ -22,4 +22,4 @@ class AnswerCreationForm(forms.ModelForm):
 	answer_link = forms.CharField()
 	class Meta:
 		model = Answer
-		fields = ("answer_text",'answer_link',)
+		fields = ('answer_link',"answer_text",)
