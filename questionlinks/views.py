@@ -62,3 +62,6 @@ def logout(request):
 	# Redirect to a success page. 
 	return HttpResponseRedirect("/login/")
 	
+def delete_question(request, id):
+	Question.objects.filter(id=id, user=request.user.id).delete()
+	return HttpResponseRedirect("/questions/")
